@@ -109,7 +109,7 @@ class PlayerScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 12),
+                padding: const EdgeInsets.only(top: 15),
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.push(
