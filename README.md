@@ -1,6 +1,6 @@
-# tic_tac_toe
+# Tic Tac Toe
 
-A 2 palyer game Tic_Tac_Toe, made with flutter.
+Tic Tac Toe is a two-player game played on a 3x3 grid. Players take turns marking a square with their symbol (either O or X). The first player to get three of their symbols in a row (vertically, horizontally, or diagonally) wins the game.
 
 ## Getting Started
 
