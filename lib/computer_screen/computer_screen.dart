@@ -205,8 +205,8 @@ class ComputerScreenState extends State<ComputerScreen> {
 
   void tapped(int index) {
     setState(() {
-      filledBoxes++;
       if (oTurn && moves[index] == "") {
+        filledBoxes++;
         moves[index] = "⭕";
         oTurn = !oTurn;
         checkWinner();

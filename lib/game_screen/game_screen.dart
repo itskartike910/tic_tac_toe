@@ -210,11 +210,12 @@ class GameScreenState extends State<GameScreen> {
 
   void tapped(int index) {
     setState(() {
-      filledBoxes++;
       if (oTurn && displayXO[index] == "") {
+        filledBoxes++;
         displayXO[index] = "⭕";
         oTurn = !oTurn;
       } else if (!oTurn && displayXO[index] == "") {
+        filledBoxes++;
         displayXO[index] = "❌";
         oTurn = !oTurn;
       }
