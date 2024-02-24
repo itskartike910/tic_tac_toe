@@ -29,15 +29,10 @@ The rules are the same as the classic Tic Tac Toe game:
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Screenshots
-[Screenshot_20240225-020349_Tic Tac Toe](https://github.com/itskartike910/tic_tac_toe/assets/96167648/10e8eab7-52cd-4f68-b3eb-b6f9f684cb48)
-![Screenshot_20240225-020356_Tic Tac Toe](https://github.com/itskartike910/tic_tac_toe/assets/96167648/f52a418c-811e-4ef5-b324-b20ac8bd93e9)
-![Screenshot_20240225-020418_Tic Tac Toe](https://github.com/itskartike910/tic_tac_toe/assets/96167648/cfc45ab2-174f-494a-a6b8-4a737050c1bd)
-![Screenshot_20240225-020425_Tic Tac Toe](https://github.com/itskartike910/tic_tac_toe/assets/96167648/c521a57c-03bb-496b-8e02-1a7efa5e5a18)
-![Screenshot_20240225-020438_Tic Tac Toe](https://github.com/itskartike910/tic_tac_toe/assets/96167648/aec00579-e460-439b-bba8-656c49c7125b)
-![Screenshot_20240225-020500_Tic Tac Toe](https://github.com/itskartike910/tic_tac_toe/assets/96167648/99b7829b-ab9c-4f93-a623-ff407750cde1)
-![Screenshot_20240225-020510_Tic Tac Toe](https://github.com/itskartike910/tic_tac_toe/assets/96167648/097ba6b6-a662-456e-b487-a0c375512f43)
-
-
-
-
-
+<img src="https://github.com/itskartike910/tic_tac_toe/assets/96167648/10e8eab7-52cd-4f68-b3eb-b6f9f684cb48" width="300">
+<img src="https://github.com/itskartike910/tic_tac_toe/assets/96167648/f52a418c-811e-4ef5-b324-b20ac8bd93e9" width="300">
+<img src="https://github.com/itskartike910/tic_tac_toe/assets/96167648/cfc45ab2-174f-494a-a6b8-4a737050c1bd" width="300">
+<img src="https://github.com/itskartike910/tic_tac_toe/assets/96167648/c521a57c-03bb-496b-8e02-1a7efa5e5a18" width="300">
+<img src="https://github.com/itskartike910/tic_tac_toe/assets/96167648/aec00579-e460-439b-bba8-656c49c7125b" width="300">
+<img src="https://github.com/itskartike910/tic_tac_toe/assets/96167648/99b7829b-ab9c-4f93-a623-ff407750cde1" width="300">
+<img src="https://github.com/itskartike910/tic_tac_toe/assets/96167648/097ba6b6-a662-456e-b487-a0c375512f43" width="300">
