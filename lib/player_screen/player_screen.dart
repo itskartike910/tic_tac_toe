@@ -33,32 +33,7 @@ class PlayerScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               const SizedBox(
-                height: 10,
-              ),
-              Container(
-                height: 120,
-                width: 360,
-                alignment: Alignment.topCenter,
-                child: Image.asset(
-                  "assets/TicTacToe.png",
-                  fit: BoxFit.fill,
-                ),
-              ),
-              const SizedBox(
-                // width: 360,
-                height: 140,
-                child: Padding(
-                  padding: EdgeInsets.all(12.0),
-                  child: Text(
-                    "About:\nTic Tac Toe is a two-player game played on a 3x3 grid. Players take turns marking a square with their symbol (either ⭕ or ❌). The first player to get three of their symbols in a row (vertically, horizontally, or diagonally) wins the game.",
-                    style: TextStyle(
-                      color: Color.fromARGB(255, 147, 0, 0),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
-                    textAlign: TextAlign.justify,
-                  ),
-                ),
+                height: 20,
               ),
               const Text(
                 "Enter Player 1 Name (⭕)",
