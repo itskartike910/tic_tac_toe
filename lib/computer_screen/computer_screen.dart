@@ -13,7 +13,7 @@ class ComputerScreenState extends State<ComputerScreen> {
   String player1 = "", player2 = "";
 
   bool oTurn = true;
-  int xWins = 0, oWins = 0;
+  int xWins = 0, oWins = 0, ties = 0;
   int filledBoxes = 0;
   String winner = "";
   String result = "...";
@@ -97,6 +97,29 @@ class ComputerScreenState extends State<ComputerScreen> {
                         ),
                       ],
                     ),
+                    // Column(
+                    //   mainAxisAlignment: MainAxisAlignment.start,
+                    //   children: [
+                    //     const Padding(
+                    //       padding: EdgeInsets.only(bottom: 12),
+                    //       child: Text(
+                    //         "Ties",
+                    //         textAlign: TextAlign.center,
+                    //         style: TextStyle(
+                    //             fontWeight: FontWeight.bold,
+                    //             fontSize: 24,
+                    //             color: Color.fromARGB(255, 2, 2, 151)),
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       ties.toString(),
+                    //       style: const TextStyle(
+                    //           fontWeight: FontWeight.bold,
+                    //           fontSize: 24,
+                    //           color: Color.fromARGB(255, 2, 2, 151)),
+                    //     ),
+                    //   ],
+                    // ),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -211,98 +234,120 @@ class ComputerScreenState extends State<ComputerScreen> {
         oTurn = !oTurn;
         checkWinner();
         if (filledBoxes < 9 && result == "...") {
-          computerMove();
+          Future.delayed(const Duration(seconds: 1), () {
+            computerMove();
+          });
         }
         checkWinner();
       }
     });
   }
 
-  void computerMove() {
-    //Without AI
-    filledBoxes++;
-    List<int> emptySpots = [];
-    for (int i = 0; i < moves.length; i++) {
-      if (moves[i] == "") {
-        emptySpots.add(i);
-      }
-    }
-
-    if (emptySpots.isNotEmpty) {
-      int randomIndex = Random().nextInt(emptySpots.length);
-      int computerMoveIndex = emptySpots[randomIndex];
-      moves[computerMoveIndex] = "❌";
-      oTurn = !oTurn;
-      checkWinner();
-    }
-  }
-
   // void computerMove() {
-  //   //With AI
-  //   int bestScore = -1000;
-  //   int bestMove = -1;
-
+  //   //Without AI
+  //   filledBoxes++;
+  //   List<int> emptySpots = [];
   //   for (int i = 0; i < moves.length; i++) {
   //     if (moves[i] == "") {
-  //       moves[i] = "❌"; // Assume computer makes a move
-
-  //       int score = minimax(moves, 0, false);
-
-  //       moves[i] = ""; // Undo the move
-
-  //       if (score > bestScore) {
-  //         bestScore = score;
-  //         bestMove = i;
-  //       }
+  //       emptySpots.add(i);
   //     }
   //   }
 
-  //   if (bestMove != -1) {
-  //     moves[bestMove] = "❌"; // Make the best move
-  //     oTurn = !oTurn; // Switch turns
+  //   if (emptySpots.isNotEmpty) {
+  //     int randomIndex = Random().nextInt(emptySpots.length);
+  //     int computerMoveIndex = emptySpots[randomIndex];
+  //     moves[computerMoveIndex] = "❌";
+  //     oTurn = !oTurn;
   //     checkWinner();
   //   }
   // }
 
-  // int minimax(List<String> board, int depth, bool isMaximizing) {
-  //   checkWinner();
+  void computerMove() {
+    //With AI
+    filledBoxes++;
+    checkWinner();
+    setState(() {
+      int winningMove = findWinningMove('❌');
+      // Check for winning move
+      if (winningMove != -1) {
+        moves[winningMove] = '❌';
+      }
+      // Check for blocking move
+      else {
+        int blockingMove = findWinningMove('⭕');
+        if (blockingMove != -1) {
+          moves[blockingMove] = '❌';
+        }
+        // If no winning or blocking move, make a move based on a simple heuristic
+        else {
+          int bestMove = findBestMove();
+          if (bestMove != -1) {
+            moves[bestMove] = '❌';
+          }
+        }
+      }
+      oTurn = !oTurn;
+      checkWinner();
+    });
+  }
 
-  //   if (winner == "⭕") {
-  //     return -1;
-  //   } else if (winner == "❌") {
-  //     return 1;
-  //   } else if (filledBoxes == 9) {
-  //     return 0; // It's a tie
-  //   }
+  int findWinningMove(String symbol) {
+    // Check rows
+    if (moves[0] == symbol && moves[1] == symbol && moves[2] == '') return 2;
+    if (moves[0] == symbol && moves[2] == symbol && moves[1] == '') return 1;
+    if (moves[1] == symbol && moves[2] == symbol && moves[0] == '') return 0;
 
-  //   if (isMaximizing) {
-  //     int bestScore = -1000;
+    if (moves[3] == symbol && moves[4] == symbol && moves[5] == '') return 5;
+    if (moves[3] == symbol && moves[5] == symbol && moves[4] == '') return 4;
+    if (moves[4] == symbol && moves[5] == symbol && moves[3] == '') return 3;
 
-  //     for (int i = 0; i < board.length; i++) {
-  //       if (board[i] == "") {
-  //         board[i] = "❌"; // Assume computer makes a move
-  //         int score = minimax(board, depth + 1, false);
-  //         board[i] = ""; // Undo the move
-  //         bestScore = max(score, bestScore);
-  //       }
-  //     }
+    if (moves[6] == symbol && moves[7] == symbol && moves[8] == '') return 8;
+    if (moves[6] == symbol && moves[8] == symbol && moves[7] == '') return 7;
+    if (moves[7] == symbol && moves[8] == symbol && moves[6] == '') return 6;
 
-  //     return bestScore;
-  //   } else {
-  //     int bestScore = 1000;
+    // Check columns
+    if (moves[0] == symbol && moves[3] == symbol && moves[6] == '') return 6;
+    if (moves[0] == symbol && moves[6] == symbol && moves[3] == '') return 3;
+    if (moves[3] == symbol && moves[6] == symbol && moves[0] == '') return 0;
 
-  //     for (int i = 0; i < board.length; i++) {
-  //       if (board[i] == "") {
-  //         board[i] = "⭕"; // Assume player makes a move
-  //         int score = minimax(board, depth + 1, true);
-  //         board[i] = ""; // Undo the move
-  //         bestScore = min(score, bestScore);
-  //       }
-  //     }
+    if (moves[1] == symbol && moves[4] == symbol && moves[7] == '') return 7;
+    if (moves[1] == symbol && moves[7] == symbol && moves[4] == '') return 4;
+    if (moves[4] == symbol && moves[7] == symbol && moves[1] == '') return 1;
 
-  //     return bestScore;
-  //   }
-  // }
+    if (moves[2] == symbol && moves[5] == symbol && moves[8] == '') return 8;
+    if (moves[2] == symbol && moves[8] == symbol && moves[5] == '') return 5;
+    if (moves[5] == symbol && moves[8] == symbol && moves[2] == '') return 2;
+
+    // Check diagonals
+    if (moves[0] == symbol && moves[4] == symbol && moves[8] == '') return 8;
+    if (moves[0] == symbol && moves[8] == symbol && moves[4] == '') return 4;
+    if (moves[4] == symbol && moves[8] == symbol && moves[0] == '') return 0;
+
+    if (moves[2] == symbol && moves[4] == symbol && moves[6] == '') return 6;
+    if (moves[2] == symbol && moves[6] == symbol && moves[4] == '') return 4;
+    if (moves[4] == symbol && moves[6] == symbol && moves[2] == '') return 2;
+
+    return -1; // No winning move found
+  }
+
+  int findBestMove() {
+    // Check for corners
+    if (moves[0] == '') return 0;
+    if (moves[2] == '') return 2;
+    if (moves[6] == '') return 6;
+    if (moves[8] == '') return 8;
+
+    // Check for center
+    if (moves[4] == '') return 4;
+
+    // Check for edges
+    if (moves[1] == '') return 1;
+    if (moves[3] == '') return 3;
+    if (moves[5] == '') return 5;
+    if (moves[7] == '') return 7;
+
+    return -1; // No available move found (shouldn't reach here)
+  }
 
   void checkWinner() {
     setState(() {
@@ -378,6 +423,7 @@ class ComputerScreenState extends State<ComputerScreen> {
       });
     } else if (filledBoxes == 9 && result == "...") {
       setState(() {
+        ties++;
         result = "There is a Tie.";
       });
     }
