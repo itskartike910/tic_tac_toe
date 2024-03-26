@@ -44,7 +44,7 @@ class HomeScreen extends StatelessWidget {
               ),
               const SizedBox(
                 // width: 360,
-                height: 140,
+                height: 160,
                 child: Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text(
