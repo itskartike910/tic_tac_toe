@@ -50,7 +50,7 @@ class HomeScreen extends StatelessWidget {
                   child: Text(
                     "About:\nTic Tac Toe is a two-player game played on a 3x3 grid. Players take turns marking a square with their symbol (either ⭕ or ❌). The first player to get three of their symbols in a row (vertically, horizontally, or diagonally) wins the game.",
                     style: TextStyle(
-                      color: Color.fromARGB(255, 147, 0, 0),
+                      color: Color.fromARGB(255, 180, 0, 0),
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
